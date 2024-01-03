@@ -1,6 +1,7 @@
 package backend;
 
 import backend.model.Figure;
+import backend.model.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,4 +22,21 @@ public class CanvasState {
         return new ArrayList<>(list);
     }
 
+    public Figure getSelectedFigure() {
+        return selectedFigure;
+    }
+
+    public void setSelectedFigure(Figure selectedFigure) {
+        this.selectedFigure = selectedFigure;
+    }
+
+    public boolean figureBelongs(Figure figure, Point eventPoint) {
+            return figure.isReachable(eventPoint);
+    }
+
+    public Figure updateFigure(double diffX, double diffY) {
+        // get selected and modify
+        selectedFigure.move(diffX, diffY);
+        return selectedFigure;
+    }
 }

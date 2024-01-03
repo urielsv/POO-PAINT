@@ -1,6 +1,6 @@
 package backend.model;
 
-public class Circle implements Figure {
+public class Circle extends Ellipse {
 
     protected final Point centerPoint;
     protected final double radius;
@@ -23,4 +23,14 @@ public class Circle implements Figure {
         return radius;
     }
 
+    @Override
+    public boolean isReachable(Point selection) {
+        return Math.sqrt(Math.pow(this.getCenterPoint().getX() - selection.getX(), 2) +
+                Math.pow(this.getCenterPoint().getY() - selection.getY(), 2)) < this.getRadius();
+    }
+
+    @Override
+    public boolean isReachable(Rectangle selection){
+        return true;
+    }
 }
