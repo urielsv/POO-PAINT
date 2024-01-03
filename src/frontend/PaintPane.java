@@ -93,9 +93,9 @@ public class PaintPane extends BorderPane {
 				double size = Math.abs(endPoint.getX() - startPoint.getX());
 				newFigure = new Square(startPoint, size);
 			} else if(ellipseButton.isSelected()) {
-				Point centerPoint = new Point(Math.abs(endPoint.x + startPoint.x) / 2, (Math.abs((endPoint.y + startPoint.y)) / 2));
-				double sMayorAxis = Math.abs(endPoint.x - startPoint.x);
-				double sMinorAxis = Math.abs(endPoint.y - startPoint.y);
+				Point centerPoint = new Point(Math.abs(endPoint.getX() + startPoint.getX()) / 2, (Math.abs((endPoint.getY() + startPoint.getY())) / 2));
+				double sMayorAxis = Math.abs(endPoint.getX() - startPoint.getY());
+				double sMinorAxis = Math.abs(endPoint.getY() - startPoint.getY());
 				newFigure = new Ellipse(centerPoint, sMayorAxis, sMinorAxis);
 			} else {
 				return ;
@@ -133,6 +133,7 @@ public class PaintPane extends BorderPane {
 					if(canvasState.figureBelongs(figure, eventPoint)) {
 						found = true;
 						selectedFigure = figure;
+						canvasState.setSelectedFigure(selectedFigure);
 						label.append(figure.toString());
 					}
 				}

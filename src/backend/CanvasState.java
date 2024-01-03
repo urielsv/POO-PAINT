@@ -9,6 +9,7 @@ import java.util.List;
 public class CanvasState {
 
     private final List<Figure> list = new ArrayList<>();
+    private Figure selectedFigure;
 
     public void addFigure(Figure figure) {
         list.add(figure);

@@ -29,4 +29,15 @@ public class Ellipse extends Figure {
         return sMinorAxis;
     }
 
+    @Override
+    public boolean isReachable(Point selection) {
+        return ((Math.pow(selection.getX() - this.getCenterPoint().getX(), 2) / Math.pow(this.getsMayorAxis(), 2)) +
+                (Math.pow(selection.getY() - this.getCenterPoint().getY(), 2) / Math.pow(this.getsMinorAxis(), 2))) <= 0.30;
+    }
+
+    @Override
+    public boolean isReachable(Rectangle selection){
+        return true;
+    }
+
 }

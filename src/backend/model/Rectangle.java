@@ -24,4 +24,17 @@ public class Rectangle extends Figure {
         return String.format("Rectángulo [ %s , %s ]", topLeft, bottomRight);
     }
 
+    @Override
+    public boolean isReachable(Point selection) {
+        return selection.getX() > this.getTopLeft().getX() && selection.getX() < this.getBottomRight().getX() &&
+                selection.getY() > this.getTopLeft().getY() && selection.getY() < this.getBottomRight().getY();
+    }
+
+    //para hacer dsp en la query 1
+    @Override
+    public boolean isReachable(Rectangle selection){
+        return true;
+    }
+
+
 }
