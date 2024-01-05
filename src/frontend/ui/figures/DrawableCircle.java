@@ -12,8 +12,8 @@ public class DrawableCircle extends DrawableFigure {
     private static final String FIGURE_NAME = "Circulo";
 
 
-    public DrawableCircle(EnumSet effects) {
-        super(FIGURE_NAME, null, effects);
+    public DrawableCircle(Figure figure, EnumSet effects) {
+        super(FIGURE_NAME, figure, effects);
     }
 
     public Figure create(Point start, Point end) {

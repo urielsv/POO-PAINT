@@ -2,6 +2,7 @@ package frontend;
 
 import backend.CanvasState;
 import backend.model.*;
+import frontend.ui.figures.DrawableCircle;
 import frontend.ui.figures.DrawableFigure;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -54,7 +55,7 @@ public class PaintPane extends BorderPane {
 	private final Map<Figure, Color> figureColorMap = new HashMap<>();
 
 
-	//lista de figuras con sus efectos
+	// Lista de figuras con sus efectos
 	private List<DrawableFigure> drawableFigureList = new ArrayList<>();
 
 
@@ -99,6 +100,8 @@ public class PaintPane extends BorderPane {
 			else if(circleButton.isSelected()) {
 				double circleRadius = Math.abs(endPoint.getX() - startPoint.getX());
 				newFigure = new Circle(startPoint, circleRadius);
+
+				drawableFigureList.add(new DrawableCircle(newFigure, null));
 			} else if(squareButton.isSelected()) {
 				double size = Math.abs(endPoint.getX() - startPoint.getX());
 				newFigure = new Square(startPoint, size);
@@ -110,6 +113,7 @@ public class PaintPane extends BorderPane {
 			} else {
 				return ;
 			}
+
 
 			figureColorMap.put(newFigure, fillColorPicker.getValue());
 			canvasState.addFigure(newFigure);
@@ -198,31 +202,33 @@ public class PaintPane extends BorderPane {
 			}
 			gc.setFill(figureColorMap.get(figure));
 
-			drawableFigure.applyEffects(gc);
+			//drawableFigure.applyEffects(gc);
 
-			// @TODO: Make generic (front)
-			if(figure instanceof Rectangle) {
-				Rectangle rectangle = (Rectangle) figure;
-				gc.fillRect(rectangle.getTopLeft().getX(), rectangle.getTopLeft().getY(),
-						Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()), Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY()));
-				gc.strokeRect(rectangle.getTopLeft().getX(), rectangle.getTopLeft().getY(),
-						Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()), Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY()));
-			} else if(figure instanceof Circle) {
-				Circle circle = (Circle) figure;
-				double diameter = circle.getRadius() * 2;
-				gc.fillOval(circle.getCenterPoint().getX() - circle.getRadius(), circle.getCenterPoint().getY() - circle.getRadius(), diameter, diameter);
-				gc.strokeOval(circle.getCenterPoint().getX() - circle.getRadius(), circle.getCenterPoint().getY() - circle.getRadius(), diameter, diameter);
-			} else if(figure instanceof Square) {
-				Square square = (Square) figure;
-				gc.fillRect(square.getTopLeft().getX(), square.getTopLeft().getY(),
-						Math.abs(square.getTopLeft().getX() - square.getBottomRight().getX()), Math.abs(square.getTopLeft().getY() - square.getBottomRight().getY()));
-				gc.strokeRect(square.getTopLeft().getX(), square.getTopLeft().getY(),
-						Math.abs(square.getTopLeft().getX() - square.getBottomRight().getX()), Math.abs(square.getTopLeft().getY() - square.getBottomRight().getY()));
-			} else if(figure instanceof Ellipse) {
-				Ellipse ellipse = (Ellipse) figure;
-				gc.strokeOval(ellipse.getCenterPoint().getX() - (ellipse.getsMayorAxis() / 2), ellipse.getCenterPoint().getY() - (ellipse.getsMinorAxis() / 2), ellipse.getsMayorAxis(), ellipse.getsMinorAxis());
-				gc.fillOval(ellipse.getCenterPoint().getX() - (ellipse.getsMayorAxis() / 2), ellipse.getCenterPoint().getY() - (ellipse.getsMinorAxis() / 2), ellipse.getsMayorAxis(), ellipse.getsMinorAxis());
-			}
+			drawableFigure.draw(gc);
+
+//			// @TODO: Make generic (front)
+//			if(figure instanceof Rectangle) {
+//				Rectangle rectangle = (Rectangle) figure;
+//				gc.fillRect(rectangle.getTopLeft().getX(), rectangle.getTopLeft().getY(),
+//						Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()), Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY()));
+//				gc.strokeRect(rectangle.getTopLeft().getX(), rectangle.getTopLeft().getY(),
+//						Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()), Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY()));
+//			} else if(figure instanceof Circle) {
+//				Circle circle = (Circle) figure;
+//				double diameter = circle.getRadius() * 2;
+//				gc.fillOval(circle.getCenterPoint().getX() - circle.getRadius(), circle.getCenterPoint().getY() - circle.getRadius(), diameter, diameter);
+//				gc.strokeOval(circle.getCenterPoint().getX() - circle.getRadius(), circle.getCenterPoint().getY() - circle.getRadius(), diameter, diameter);
+//			} else if(figure instanceof Square) {
+//				Square square = (Square) figure;
+//				gc.fillRect(square.getTopLeft().getX(), square.getTopLeft().getY(),
+//						Math.abs(square.getTopLeft().getX() - square.getBottomRight().getX()), Math.abs(square.getTopLeft().getY() - square.getBottomRight().getY()));
+//				gc.strokeRect(square.getTopLeft().getX(), square.getTopLeft().getY(),
+//						Math.abs(square.getTopLeft().getX() - square.getBottomRight().getX()), Math.abs(square.getTopLeft().getY() - square.getBottomRight().getY()));
+//			} else if(figure instanceof Ellipse) {
+//				Ellipse ellipse = (Ellipse) figure;
+//				gc.strokeOval(ellipse.getCenterPoint().getX() - (ellipse.getsMayorAxis() / 2), ellipse.getCenterPoint().getY() - (ellipse.getsMinorAxis() / 2), ellipse.getsMayorAxis(), ellipse.getsMinorAxis());
+//				gc.fillOval(ellipse.getCenterPoint().getX() - (ellipse.getsMayorAxis() / 2), ellipse.getCenterPoint().getY() - (ellipse.getsMinorAxis() / 2), ellipse.getsMayorAxis(), ellipse.getsMinorAxis());
+//			}
 		}
 	}
 

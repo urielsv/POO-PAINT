@@ -15,7 +15,7 @@ public abstract class DrawableFigure {
     // hay que pasarle los efectos como parametro
     public DrawableFigure(String name, Figure figure, EnumSet effects) {
         this.name = name;
-        this.figure = null;
+        this.figure = figure;
     }
 
     public String getName() {
