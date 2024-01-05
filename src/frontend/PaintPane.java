@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,11 @@ public class PaintPane extends BorderPane {
 
 	// Colores de relleno de cada figura
 	private final Map<Figure, Color> figureColorMap = new HashMap<>();
+
+
+	//lista de figuras con sus efectos
+	private List<DrawableFigure> drawableFigureList = new ArrayList<>();
+
 
 	public PaintPane(CanvasState canvasState, StatusPane statusPane) {
 		this.canvasState = canvasState;
@@ -191,6 +197,9 @@ public class PaintPane extends BorderPane {
 				gc.setStroke(lineColor);
 			}
 			gc.setFill(figureColorMap.get(figure));
+
+			drawableFigure.applyEffects(gc);
+
 			// @TODO: Make generic (front)
 			if(figure instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) figure;
