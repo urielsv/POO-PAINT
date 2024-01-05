@@ -2,6 +2,7 @@ package frontend;
 
 import backend.CanvasState;
 import backend.model.*;
+import frontend.ui.figures.DrawableFigure;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PaintPane extends BorderPane {
@@ -82,6 +84,8 @@ public class PaintPane extends BorderPane {
 			}
 			Figure newFigure = null;
 
+			// loopeas por los botones y si alguno esta seleccionado,
+			// creas la figura correspondiente
 			// @TODO: Make it generic (front)
 			if(rectangleButton.isSelected()) {
 				newFigure = new Rectangle(startPoint, endPoint);
@@ -173,7 +177,14 @@ public class PaintPane extends BorderPane {
 
 	void redrawCanvas() {
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-		for(Figure figure : canvasState.figures()) {
+
+		for(DrawableFigure drawableFigure : drawableFigureList) {
+			Figure figure = drawableFigure.getFigure();
+			if (figure == null) {
+				// ??
+			}
+
+			// if selected
 			if(figure == selectedFigure) {
 				gc.setStroke(Color.RED);
 			} else {
