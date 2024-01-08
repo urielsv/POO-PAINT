@@ -35,6 +35,7 @@ public class CanvasState {
             return figure.isReachable(eventPoint);
     }
 
+    // update selected figures
     public Figure updateFigure(double diffX, double diffY) {
         // get selected and modify
         selectedFigure.move(diffX, diffY);
