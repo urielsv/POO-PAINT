@@ -2,7 +2,7 @@ package backend.model;
 
 public class Rectangle extends Figure {
 
-    private final Point topLeft, bottomRight;
+    private Point topLeft, bottomRight;
 
     public Rectangle(Point topLeft, Point bottomRight) {
         super(new Point[]{topLeft, bottomRight});

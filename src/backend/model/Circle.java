@@ -2,22 +2,20 @@ package backend.model;
 
 public class Circle extends Ellipse {
 
-
-    private final double radius;
+    private double radius;
 
     public Circle(Point centerPoint, double radius) {
         super(centerPoint, radius, radius);
         this.radius = radius;
     }
 
+    public double getRadius() {
+        return radius;
+    }
+
     @Override
     public String toString() {
         return String.format("Círculo [Centro: %s, Radio: %.2f]", getCenterPoint(), radius);
-    }
-
-
-    public double getRadius() {
-        return radius;
     }
 
     @Override
@@ -30,4 +28,5 @@ public class Circle extends Ellipse {
     public boolean isReachable(Rectangle selection){
         return true;
     }
+
 }

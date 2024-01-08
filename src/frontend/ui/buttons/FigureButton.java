@@ -4,22 +4,17 @@ import backend.CanvasState;
 import backend.model.Figure;
 import backend.model.Point;
 import frontend.ui.MouseActions;
-import frontend.ui.figures.DrawableFigure;
 import javafx.scene.control.ToggleButton;
 
-import java.util.List;
-
-    public class FigureButton extends ToggleButton implements MouseActions {
+public class FigureButton<F extends Figure> extends ToggleButton implements MouseActions {
     private Point start;
     private final CanvasState canvasState;
-    private DrawableFigure drawable;
-    private List<DrawableFigure> drawables;
+    private F figure;
 
-    public FigureButton(String name, DrawableFigure drawable, CanvasState canvasState, List<DrawableFigure> drawables) {
+    // new FigureButton("Rectangle", canvasState, Rectangle::new)
+    public FigureButton(String name, CanvasState canvasState) {
         super(name);
-        this.drawable = drawable;
         this.canvasState = canvasState;
-        this.drawables = drawables;
     }
 
     @Override
@@ -29,8 +24,7 @@ import java.util.List;
 
     @Override
     public void onMouseReleased(Point end) {
-        Figure figure = drawable.create(start, end);
+//        figure.update(start, end);
         canvasState.addFigure(figure);
-        drawables.add(drawable);
     }
 }

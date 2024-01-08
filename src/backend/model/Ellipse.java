@@ -2,8 +2,9 @@ package backend.model;
 
 public class Ellipse extends Figure {
 
-    protected final Point centerPoint;
-    protected final double sMayorAxis, sMinorAxis;
+    protected Point centerPoint;
+    protected double sMayorAxis;
+    protected double sMinorAxis;
 
     public Ellipse(Point centerPoint, double sMayorAxis, double sMinorAxis) {
         super(new Point[]{centerPoint});
@@ -39,5 +40,7 @@ public class Ellipse extends Figure {
     public boolean isReachable(Rectangle selection){
         return true;
     }
+
+
 
 }

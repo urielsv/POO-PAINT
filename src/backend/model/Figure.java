@@ -2,7 +2,7 @@ package backend.model;
 
 public abstract class Figure implements Movable, Reachable {
 
-    private final Point[] points;
+    private Point[] points;
 
     public Figure(Point[] points) {
         this.points = points;
@@ -15,5 +15,6 @@ public abstract class Figure implements Movable, Reachable {
             p.move(diffX, diffY);
         }
     }
+
 
 }
