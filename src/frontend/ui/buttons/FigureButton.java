@@ -1,9 +1,10 @@
 package frontend.ui.buttons;
 
-import backend.CanvasState;
 import backend.model.Figure;
 import backend.model.Point;
+import frontend.CanvasState;
 import frontend.ui.MouseActions;
+import frontend.ui.figures.DrawableFigure;
 import frontend.ui.figures.FigureFactory;
 import javafx.scene.control.ToggleButton;
 
@@ -13,7 +14,7 @@ public class FigureButton<F extends Figure> extends ToggleButton implements Mous
     private final CanvasState canvasState;
 
     // new FigureButton("Cuadrado", canvasState, (start, end) -> new Square(start, end.getX() - start.getX())
-    // Square::new
+
     public FigureButton(String name, CanvasState canvasState, FigureFactory<F> factory) {
         super(name);
         this.canvasState = canvasState;
@@ -28,7 +29,7 @@ public class FigureButton<F extends Figure> extends ToggleButton implements Mous
     @Override
     public void onMouseReleased(Point end) {
 //        figure.update(start, end);
-        F figure = factory.create(start, end);
-        canvasState.addFigure(figure);
+        DrawableFigure<F> drawableFigure = factory.create(start, end);
+        canvasState.addFigure(drawableFigure);
     }
 }

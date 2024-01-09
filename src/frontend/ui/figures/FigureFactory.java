@@ -4,8 +4,8 @@ import backend.model.Figure;
 import backend.model.Point;
 
 @FunctionalInterface
-public interface FigureFactory<E extends Figure> {
+public interface FigureFactory<F extends Figure> {
 
-    E create(Point start, Point end);
+    DrawableFigure<F> create(Point start, Point end);
 
 }

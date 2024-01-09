@@ -8,24 +8,28 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.EnumSet;
 
-public class DrawableCircle extends Circle implements Drawable {
+public class DrawableCircle<C extends Circle> extends DrawableFigure<C> {
 
-    private static final String FIGURE_NAME = "Circulo";
+    // new FigureButton("Circle", canvasState, (start, end) -> new Circle(start, end.getX() - start.getX())
 
-
-    public DrawableCircle(Point start, Point end) {
-        super(start, Math.abs(end.getX() - start.getX()));
+    public DrawableCircle(C figure) {
+        super(figure);
     }
 
     @Override
     public void draw(GraphicsContext gc) {
-        double diameter = getRadius() * 2;
-        gc.fillOval(getCenterPoint().getX() - getRadius(),
-                    getCenterPoint().getY() - getRadius(),
+
+        C circle = getFigure();
+
+        handleSelection(gc);
+
+        double diameter = circle.getRadius() * 2;
+        gc.fillOval(circle.getCenterPoint().getX() - circle.getRadius(),
+                    circle.getCenterPoint().getY() - circle.getRadius(),
                     diameter,
                     diameter);
-        gc.strokeOval(getCenterPoint().getX() - getRadius(),
-                    getCenterPoint().getY() - getRadius(),
+        gc.strokeOval(circle.getCenterPoint().getX() - circle.getRadius(),
+                    circle.getCenterPoint().getY() - circle.getRadius(),
                     diameter,
                     diameter);
     }
