@@ -53,8 +53,7 @@ public class PaintPane extends BorderPane {
 	private final Map<Figure, Color> figureColorMap = new HashMap<>();
 
 
-	// Lista de figuras con sus efectos
-	private List<DrawableFigure> drawableFigureList = new ArrayList<>();
+
 
 
 	public PaintPane(CanvasState canvasState, StatusPane statusPane) {
