@@ -24,7 +24,6 @@ public abstract class DrawableFigure<F extends Figure> {
         return figure;
     }
 
-
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
@@ -32,11 +31,13 @@ public abstract class DrawableFigure<F extends Figure> {
     public void changeColor(Color color) {
          this.figureColor = color;
     }
+
     public void handleSelection(GraphicsContext gc) {
         // Handle figure selection
         gc.setFill(figureColor);
         gc.setStroke(selected ? SELECTED_COLOR : LINE_COLOR);
         //gc.setFill(figureColorMap.get(figure));
     }
+
     public abstract void draw(GraphicsContext gc);
 }

@@ -25,8 +25,7 @@ public class Circle extends Ellipse {
     }
 
     @Override
-    public boolean isReachable(Rectangle selection){
-        return true;
+    public boolean isContained(Rectangle selection) {
+        return super.isContained(selection);
     }
-
 }

@@ -19,27 +19,26 @@ public class SelectionButton extends ToggleButton implements MouseActions {
 
     private Point end;
     private final CanvasState canvasState;
+
     public SelectionButton(CanvasState canvasState) {
         super(BUTTON_NAME);
         this.canvasState = canvasState;
-
     }
 
-    @Override
-    public void onMousePressed(Point point) {
-        // the selection area is created on the starting point.
-        end = point;
-        selectionArea = new Rectangle(point, end);
-    }
 
     @Override
     public void onMouseReleased(Point point) {
         // reset the selection area every time the mouse is released for the next selection
-        selectionArea = null; // TODO fix?
+
+        canvasState.clearSelectedFigures();
+        end = point;
+        selectionArea = new Rectangle(point, end);
+
         // and clear any selected figures within it
         for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
-            if (figure.(selectionArea)) {
+            if (figure.getFigure().isContained(selectionArea)) {
                 // add to seleceted list from canvasstate
+                canvasState.addSelectedFigures(figure);
 
             }
         }

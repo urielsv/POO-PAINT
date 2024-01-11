@@ -30,11 +30,8 @@ public class Rectangle extends Figure {
                 selection.getY() > this.getTopLeft().getY() && selection.getY() < this.getBottomRight().getY();
     }
 
-    //para hacer dsp en la query 1
     @Override
-    public boolean isReachable(Rectangle selection){
-        return true;
+    public boolean isContained(Rectangle selection) {
+        return false;
     }
-
-
 }

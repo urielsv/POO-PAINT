@@ -37,10 +37,15 @@ public class Ellipse extends Figure {
     }
 
     @Override
-    public boolean isContained(Rectangle selection) {
-        return selection.isReachable(new Point(getCenterPoint().getX() + getsMayorAxis() * 0.5f,
-                                getCenterPoint().getY() + getsMayorAxis() * 0.5f)) &&
-                selection.isReachable(new Point(getCenterPoint().getX() - getsMinorAxis() * 0.5f,
-                        getCenterPoint().getY() - getsMayorAxis() * 0.5f)) &&
+    public boolean isContained(Rectangle selectionRect) {
+        return selectionRect.isReachable(new Point(getCenterPoint().getX() + getsMayorAxis() * 0.5f,
+                                getCenterPoint().getY())) &&
+                selectionRect.isReachable(new Point(getCenterPoint().getX() - getsMinorAxis() * 0.5f,
+                        getCenterPoint().getY())) &&
+                selectionRect.isReachable(new Point(getCenterPoint().getX(),
+                        getCenterPoint().getY() + getsMinorAxis() * 0.5f)) &&
+                selectionRect.isReachable(new Point(getCenterPoint().getX(),
+                        getCenterPoint().getY() - getsMinorAxis() * 0.5f));
+
     }
 }

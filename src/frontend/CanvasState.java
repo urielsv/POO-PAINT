@@ -37,8 +37,12 @@ public class CanvasState {
         this.selected = selectedFigure;
     }
 
-    public void addSelectedFigure(DrawableFigure<? extends Figure> figure) {
+    public void addSelectedFigures(DrawableFigure<? extends Figure> figure) {
         selectedList.add(figure);
+    }
+
+    public void clearSelectedFigures() {
+        selectedList.clear();
     }
 
     public boolean figureBelongs(DrawableFigure<? extends Figure> figure, Point eventPoint) {
