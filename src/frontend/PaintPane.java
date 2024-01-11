@@ -35,10 +35,10 @@ public class PaintPane extends BorderPane {
 
 	// Botones Barra Izquierda
 	private final ToggleButton selectionButton = new ToggleButton("Seleccionar");
-	private final ToggleButton rectangleButton = new ToggleButton("Rectángulo");
-	private final ToggleButton circleButton = new ToggleButton("Círculo");
-	private final ToggleButton squareButton = new ToggleButton("Cuadrado");
-	private final ToggleButton ellipseButton = new ToggleButton("Elipse");
+//	private final ToggleButton rectangleButton = new ToggleButton("Rectángulo");
+//	private final ToggleButton circleButton = new ToggleButton("Círculo");
+//	private final ToggleButton squareButton = new ToggleButton("Cuadrado");
+//	private final ToggleButton ellipseButton = new ToggleButton("Elipse");
 	private final ToggleButton deleteButton = new ToggleButton("Borrar");
 
 	// Selector de color de relleno

@@ -5,7 +5,7 @@ public class Circle extends Ellipse {
     private double radius;
 
     public Circle(Point centerPoint, double radius) {
-        super(centerPoint, radius, radius);
+        super(centerPoint, radius*2, radius*2);
         this.radius = radius;
     }
 
