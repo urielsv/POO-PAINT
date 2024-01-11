@@ -14,6 +14,8 @@ public abstract class DrawableFigure<F extends Figure> {
     private static final Color SELECTED_COLOR = Color.RED;
     private static final Color LINE_COLOR = Color.BLACK;
 
+    private Color figureColor = Color.YELLOW;
+
     public DrawableFigure(F figure) {
         this.figure = figure;
     }
@@ -27,6 +29,9 @@ public abstract class DrawableFigure<F extends Figure> {
         this.selected = selected;
     }
 
+    public void changeColor(Color color) {
+         this.figureColor = color;
+    }
     public void handleSelection(GraphicsContext gc) {
         // Handle figure selection
         gc.setFill(figureColor);

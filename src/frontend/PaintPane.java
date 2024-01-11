@@ -109,7 +109,7 @@ public class PaintPane extends BorderPane {
 		});
 
 		canvas.setOnMouseClicked(event -> {
-			if(selectionButton.isSelected()) {
+//			if(selectionButton.isSelected()) {
 				Point eventPoint = new Point(event.getX(), event.getY());
 				boolean found = false;
 				StringBuilder label = new StringBuilder("Se seleccionó: ");
@@ -117,10 +117,11 @@ public class PaintPane extends BorderPane {
 					if(canvasState.figureBelongs(figure, eventPoint)) {
 						found = true;
 						selectedFigure = figure;
+						figure.setSelected(true);
 						canvasState.setSelectedFigure(selectedFigure);
 						label.append(figure.toString());
 					}
-				}
+//				}
 				if (found) {
 					statusPane.updateStatus(label.toString());
 				} else {

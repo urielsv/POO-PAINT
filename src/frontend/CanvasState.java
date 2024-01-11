@@ -32,11 +32,10 @@ public class CanvasState {
     }
 
     public boolean figureBelongs(DrawableFigure<? extends Figure> figure, Point eventPoint) {
-//            if (figure.getFigure() == null)
-//                return false;
-//            else
-//                return figure.getFigure().isReachable(eventPoint);
-//
-        return false;
+        // temp
+            if (figure.getFigure() == null)
+                return false;
+            else
+                return figure.getFigure().isReachable(eventPoint);
     }
 }
