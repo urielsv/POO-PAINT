@@ -29,6 +29,7 @@ public abstract class DrawableFigure<F extends Figure> {
 
     public void handleSelection(GraphicsContext gc) {
         // Handle figure selection
+        gc.setFill(figureColor);
         gc.setStroke(selected ? SELECTED_COLOR : LINE_COLOR);
         //gc.setFill(figureColorMap.get(figure));
     }

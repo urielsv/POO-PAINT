@@ -1,7 +1,6 @@
 package frontend.ui.bars;
 
-import backend.model.Circle;
-import backend.model.Point;
+import backend.model.*;
 import frontend.CanvasState;
 import frontend.ui.buttons.FigureButton;
 import frontend.ui.figures.DrawableCircle;
@@ -33,11 +32,22 @@ public class SideBar extends VBox {
 
 //            ToggleButton rectButton = new RectangleButton("Seleccionar");
 
-
         FigureButton<Circle> circleButton = new FigureButton<>("Círculo", canvasState,
-                (start, end) -> new DrawableCircle<>(new Circle(start, end.getX() - start.getX())));
+                (start, end) -> new DrawableEllipse<>(new Circle(start, end.getX() - start.getX())));
 
-        ToggleButton[] toolsArr = {circleButton};
+        FigureButton<Rectangle> rectangleButton = new FigureButton<>("Rectángulo", canvasState,
+                (start, end) -> new DrawableRectangle<>(new Rectangle(start, end)));
+
+        FigureButton<Ellipse> ellipseButton = new FigureButton<>("Elipse", canvasState,
+                (start, end) -> new DrawableEllipse<>(new Ellipse(
+                    new Point(Math.abs(end.getX() + start.getX()) / 2, (Math.abs((end.getY() + start.getY())) / 2)),
+                    Math.abs(end.getX() - start.getX()),
+                    Math.abs(end.getY() - start.getY()))));
+
+        FigureButton<Square> squareButton = new FigureButton<>("Cuadrado", canvasState,
+                (start, end) -> new DrawableRectangle<>(new Square(start, end.getX() - start.getX())));
+
+        ToggleButton[] toolsArr = {circleButton, rectangleButton, ellipseButton, squareButton};
 
         for (ToggleButton tool : toolsArr) {
             tool.setMinWidth(90);
