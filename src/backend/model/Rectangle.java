@@ -31,7 +31,8 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public boolean isContained(Rectangle selection) {
-        return false;
+    public boolean isContained(Rectangle selectionRect) {
+        return selectionRect.isReachable(this.getTopLeft())
+                && selectionRect.isReachable(this.getBottomRight());
     }
 }

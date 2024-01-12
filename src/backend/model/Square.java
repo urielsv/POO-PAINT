@@ -12,4 +12,9 @@ public class Square extends Rectangle {
         return String.format("Cuadrado [ %s , %s ]", getTopLeft(), getBottomRight());
     }
 
+
+    @Override
+    public boolean isContained(Rectangle selectionRect) {
+        return super.isContained(selectionRect);
+    }
 }

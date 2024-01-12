@@ -38,14 +38,14 @@ public class Ellipse extends Figure {
 
     @Override
     public boolean isContained(Rectangle selectionRect) {
-        return selectionRect.isReachable(new Point(getCenterPoint().getX() + getsMayorAxis() * 0.5f,
+        return selectionRect.isReachable(new Point(getCenterPoint().getX() + getsMayorAxis() / 2,
                                 getCenterPoint().getY())) &&
-                selectionRect.isReachable(new Point(getCenterPoint().getX() - getsMinorAxis() * 0.5f,
+                selectionRect.isReachable(new Point(getCenterPoint().getX() - getsMinorAxis() / 2 ,
                         getCenterPoint().getY())) &&
                 selectionRect.isReachable(new Point(getCenterPoint().getX(),
-                        getCenterPoint().getY() + getsMinorAxis() * 0.5f)) &&
+                        getCenterPoint().getY() + getsMinorAxis() / 2)) &&
                 selectionRect.isReachable(new Point(getCenterPoint().getX(),
-                        getCenterPoint().getY() - getsMinorAxis() * 0.5f));
+                        getCenterPoint().getY() - getsMinorAxis() / 2));
 
     }
 }
