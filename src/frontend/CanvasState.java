@@ -4,6 +4,7 @@ package frontend;
 
 import backend.model.Figure;
 import backend.model.Point;
+import frontend.ui.SelectedSet;
 import frontend.ui.figures.DrawableFigure;
 
 import java.util.ArrayList;
@@ -13,13 +14,13 @@ import java.util.Set;
 
 public class CanvasState {
 
-    private final List<DrawableFigure<? extends Figure>> list = new ArrayList<>();
 
-    // temp
+    // TODO remove selected
     private DrawableFigure<? extends Figure> selected;
 
-    private Set<DrawableFigure<? extends Figure>> selectedList = new HashSet<>();
+    private final List<DrawableFigure<? extends Figure>> list = new ArrayList<>();
 
+    private Set<DrawableFigure<? extends Figure>> selectedList = new SelectedSet<>();
 
     public void addFigure(DrawableFigure figure) {
         list.add(figure);
@@ -27,10 +28,6 @@ public class CanvasState {
 
     public Iterable<DrawableFigure<? extends Figure>> figures() {
         return new ArrayList<>(list);
-    }
-
-    public DrawableFigure getSelectedFigure() {
-        return selected;
     }
 
     public void setSelectedFigure(DrawableFigure selectedFigure) {

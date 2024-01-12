@@ -8,7 +8,7 @@ import frontend.ui.figures.DrawableFigure;
 import frontend.ui.figures.FigureFactory;
 import javafx.scene.control.ToggleButton;
 
-public class FigureButton<F extends Figure> extends ToggleButton implements MouseActions {
+public class FigureButton<F extends Figure> extends ActionButton {
     private final FigureFactory<F> factory;
     private Point start;
     private final CanvasState canvasState;
@@ -29,7 +29,9 @@ public class FigureButton<F extends Figure> extends ToggleButton implements Mous
     @Override
     public void onMouseReleased(Point end) {
 //        figure.update(start, end);
+        canvasState.clearSelectedFigures();
         DrawableFigure<F> drawableFigure = factory.create(start, end);
         canvasState.addFigure(drawableFigure);
+        canvasState.addSelectedFigures(drawableFigure);
     }
 }

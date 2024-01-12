@@ -11,13 +11,13 @@ import javafx.scene.control.ToggleButton;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SelectionButton extends ToggleButton implements MouseActions {
+public class SelectionButton extends ActionButton {
 
     private static final String BUTTON_NAME = "Seleccionar";
 
     private Rectangle selectionArea;
 
-    private Point end;
+    private Point start, end;
     private final CanvasState canvasState;
 
     public SelectionButton(CanvasState canvasState) {
@@ -27,34 +27,50 @@ public class SelectionButton extends ToggleButton implements MouseActions {
 
 
     @Override
+    public void onMousePressed(Point point) {
+        // clear the selected list
+        canvasState.clearSelectedFigures();
+
+        start = point;
+        end = point;
+        for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
+            if (figure.getFigure().isReachable(start)) {
+                // add to seleceted list from canvasstate
+                canvasState.addSelectedFigures(figure);
+            }
+        }
+
+    }
+
+    @Override
     public void onMouseReleased(Point point) {
         // reset the selection area every time the mouse is released for the next selection
 
         canvasState.clearSelectedFigures();
         end = point;
-        selectionArea = new Rectangle(point, end);
+        selectionArea = new Rectangle(start, end);
 
         // and clear any selected figures within it
         for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
             if (figure.getFigure().isContained(selectionArea)) {
                 // add to seleceted list from canvasstate
                 canvasState.addSelectedFigures(figure);
-
             }
         }
+        selectionArea = null;
     }
 
     @Override
     public void onMouseDragged(Point point) {
-				double diffX = (point.getX() - selectionArea.getTopLeft().getX());
-				double diffY = (point.getY() - selectionArea.getTopLeft().getY());
 
+        canvasState.clearSelectedFigures();
 
-                // loop through the selected list and modify them (move, change color, effects, etc)
-
-//				selectedFigure = canvasState.updateFigure(diffX, diffY);
+        if (selectionArea != null) {
+            double diffX = (point.getX() - selectionArea.getTopLeft().getX());
+            double diffY = (point.getY() - selectionArea.getTopLeft().getY());
+            end.move(diffX, diffY);
+        }
 
                 // modify the starting point of the imaginary rectangle
-				end.move(diffX, diffY);
     }
 }

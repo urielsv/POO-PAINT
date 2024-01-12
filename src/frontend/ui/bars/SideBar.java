@@ -15,11 +15,6 @@ import javafx.scene.layout.VBox;
 public class SideBar extends VBox {
 
     // Botones Barra Izquierda
-    private final ToggleButton selectionButton = new ToggleButton("Seleccionar");
-    private final ToggleButton rectangleButton = new ToggleButton("Rectángulo");
-    //private final ToggleButton circleButton = new ToggleButton("Círculo");
-    private final ToggleButton squareButton = new ToggleButton("Cuadrado");
-    private final ToggleButton ellipseButton = new ToggleButton("Elipse");
     private final ToggleButton deleteButton = new ToggleButton("Borrar");
     private final CanvasState canvasState;
 
@@ -32,9 +27,11 @@ public class SideBar extends VBox {
             setStyle("-fx-background-color: #999;");
             setPrefWidth(100);
 
-//            ToggleButton rectButton = new RectangleButton("Seleccionar");
+
         SelectionButton selectionButton = new SelectionButton(canvasState);
 
+
+        //Figure Buttons
         FigureButton<Circle> circleButton = new FigureButton<>("Círculo", canvasState,
                 (start, end) -> new DrawableEllipse<>(new Circle(start, end.getX() - start.getX())));
 
@@ -49,6 +46,7 @@ public class SideBar extends VBox {
 
         FigureButton<Square> squareButton = new FigureButton<>("Cuadrado", canvasState,
                 (start, end) -> new DrawableRectangle<>(new Square(start, end.getX() - start.getX())));
+
 
         ToggleButton[] toolsArr = {selectionButton, circleButton, rectangleButton, ellipseButton, squareButton};
 
