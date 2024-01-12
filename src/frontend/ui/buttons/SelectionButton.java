@@ -27,10 +27,7 @@ public class SelectionButton extends ActionButton {
 
 
     @Override
-    public void onMousePressed(Point point) {
-        // clear the selected list
-        canvasState.clearSelectedFigures();
-
+    public void onMouseClicked(Point point) {
         start = point;
         end = point;
         for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
@@ -39,15 +36,25 @@ public class SelectionButton extends ActionButton {
                 canvasState.addSelectedFigures(figure);
             }
         }
+    }
 
+    @Override
+    public void onMousePressed(Point point) {
+        start = point;
     }
 
     @Override
     public void onMouseReleased(Point point) {
-        // reset the selection area every time the mouse is released for the next selection
+        end = point;
+
+        // Released but no movement
+        if (start != null && end != null && start.getX() == end.getX() && start.getY() == end.getY()) {
+            canvasState.clearSelectedFigures();
+            return;
+        }
 
         canvasState.clearSelectedFigures();
-        end = point;
+
         selectionArea = new Rectangle(start, end);
 
         // and clear any selected figures within it
@@ -71,6 +78,6 @@ public class SelectionButton extends ActionButton {
             end.move(diffX, diffY);
         }
 
-                // modify the starting point of the imaginary rectangle
+        // modify the starting point of the imaginary rectangle
     }
 }
