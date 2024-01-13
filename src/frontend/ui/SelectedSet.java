@@ -23,4 +23,7 @@ public class SelectedSet<T extends DrawableFigure<? extends Figure>> extends Has
             }
             super.clear();
         }
+
+
+
 }

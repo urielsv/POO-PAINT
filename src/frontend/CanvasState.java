@@ -34,6 +34,15 @@ public class CanvasState {
         this.selected = selectedFigure;
     }
 
+    public void deleteFigure() {
+        for (DrawableFigure<?extends Figure> figure : figures()){
+            if (selectedList.contains(figure)) {
+                list.remove(figure);
+            }
+        }
+        clearSelectedFigures();
+    }
+
     public void addSelectedFigures(DrawableFigure<? extends Figure> figure) {
         selectedList.add(figure);
     }

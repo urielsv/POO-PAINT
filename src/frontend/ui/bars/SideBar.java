@@ -10,9 +10,13 @@ import frontend.ui.figures.DrawableEllipse;
 import frontend.ui.figures.DrawableRectangle;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+import javax.swing.*;
 
 public class SideBar extends VBox {
 
@@ -29,8 +33,6 @@ public class SideBar extends VBox {
             setStyle("-fx-background-color: #999;");
             setPrefWidth(100);
 
-
-        SelectionButton selectionButton = new SelectionButton(canvasState);
 
 
         //Figure Buttons
@@ -50,6 +52,10 @@ public class SideBar extends VBox {
                 (start, end) -> new DrawableRectangle<>(new Square(start, end.getX() - start.getX())));
 
 
+        // Other buttons
+        ColorPicker fillColorPicker = new ColorPicker(Color.YELLOW);
+        SelectionButton selectionButton = new SelectionButton(canvasState);
+
         ToggleButton[] toolsArr = {selectionButton, circleButton, rectangleButton, ellipseButton, squareButton, deleteButton};
 
         for (ToggleButton tool : toolsArr) {
@@ -58,15 +64,10 @@ public class SideBar extends VBox {
             tool.setCursor(Cursor.HAND);
         }
 
-        //		buttonsBox.getChildren().addAll(toolsArr);
-//		buttonsBox.getChildren().add(fillColorPicker);
-//		buttonsBox.setPadding(new Insets(5));
-//		buttonsBox.setStyle("-fx-background-color: #999");
-//		buttonsBox.setPrefWidth(100);
-
+		getChildren().add(fillColorPicker);
         getChildren().addAll(toolsArr);
         setPadding(new Insets(5));
-        setStyle("-fx-background-color: #999");
+        setStyle("-fx-background-color: #282828");
         setPrefWidth(100);
 
     }

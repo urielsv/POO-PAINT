@@ -34,14 +34,10 @@ public class PaintPane extends BorderPane {
     private final GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
-    // Selector de color de relleno
-    private final ColorPicker fillColorPicker = new ColorPicker(defaultFillColor);
 
     // Dibujar una figura
     private Point startPoint;
 
-    // Seleccionar una figura
-    private DrawableFigure selectedFigure;
 
     // StatusBar
     private final StatusPane statusPane;
@@ -106,18 +102,10 @@ public class PaintPane extends BorderPane {
         });
 
         canvas.setOnMouseClicked(event -> {
-//			if(selectionButton.isSelected()) {
+
             Point eventPoint = new Point(event.getX(), event.getY());
             boolean found = false;
             StringBuilder label = new StringBuilder("Se seleccionó: ");
-//				for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
-//					if(canvasState.figureBelongs(figure, eventPoint)) {
-//						found = true;
-//						selectedFigure = figure;
-//						canvasState.setSelectedFigure(selectedFigure);
-//						label.append(figure.toString());
-//					}
-////				}
 
             // Clicked but moved
             if (startPoint.getX() != eventPoint.getX() && startPoint.getY() != eventPoint.getY()) {
@@ -129,24 +117,19 @@ public class PaintPane extends BorderPane {
                 button.onMouseClicked(eventPoint);
             }
 
-            if (found) {
-                statusPane.updateStatus(label.toString());
-            } else {
-                selectedFigure = null;
-                statusPane.updateStatus("Ninguna figura encontrada");
-            }
+//            if (found) {
+//                statusPane.updateStatus(label.toString());
+//            } else {
+//                selectedFigure = null;
+//                statusPane.updateStatus("Ninguna figura encontrada");
+//            }
             redrawCanvas();
 
         });
 
         canvas.setOnMouseDragged(event -> {
-//			if(selectionButton.isSelected()) {
             Point eventPoint = new Point(event.getX(), event.getY());
-//				double diffX = (eventPoint.getX() - startPoint.getX());
-//				double diffY = (eventPoint.getY() - startPoint.getY());
-//
-//				selectedFigure = canvasState.updateFigure(diffX, diffY);
-//				startPoint.move(diffX, diffY);
+
             ActionButton button = (ActionButton) sideBar.getTools().getSelectedToggle();
             if (button != null) {
                 button.onMouseDragged(eventPoint);
