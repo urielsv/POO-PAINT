@@ -45,12 +45,13 @@ public class PaintPane extends BorderPane {
     // Colores de relleno de cada figura
     private final Map<DrawableFigure, Color> figureColorMap = new HashMap<>();
 
+    private SideBar sideBar;
 
     public PaintPane(CanvasState canvasState, StatusPane statusPane) {
         this.canvasState = canvasState;
         this.statusPane = statusPane;
 
-        SideBar sideBar = new SideBar(canvasState);
+        sideBar = new SideBar(canvasState);
 
         gc.setLineWidth(1);
 
@@ -61,6 +62,7 @@ public class PaintPane extends BorderPane {
             ActionButton button = (ActionButton) sideBar.getTools().getSelectedToggle();
             if (button != null) {
                 button.onMousePressed(startPoint);
+
             }
 
 
@@ -93,12 +95,15 @@ public class PaintPane extends BorderPane {
                     found = true;
                     label.append(figure.getFigure().toString());
                 }
+
             }
             if (found) {
                 statusPane.updateStatus(label.toString());
             } else {
                 statusPane.updateStatus(eventPoint.toString());
             }
+            redrawCanvas();
+
         });
 
         canvas.setOnMouseClicked(event -> {
@@ -134,7 +139,6 @@ public class PaintPane extends BorderPane {
             if (button != null) {
                 button.onMouseDragged(eventPoint);
             }
-
             redrawCanvas();
         });
 
@@ -150,9 +154,16 @@ public class PaintPane extends BorderPane {
                 redrawCanvas();
         });
 
+        sideBar.getColorPickerButton().setOnAction(event -> {
+            canvasState.updateSelectedFigures(sideBar.getColorPicker());
+            redrawCanvas();
+        });
+
 
         setLeft(sideBar);
         setRight(canvas);
+
+
     }
 
     void redrawCanvas() {

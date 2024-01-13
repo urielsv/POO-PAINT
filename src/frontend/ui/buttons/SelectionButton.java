@@ -30,6 +30,7 @@ public class SelectionButton extends ActionButton {
     public void onMouseClicked(Point point) {
         start = point;
         end = point;
+        canvasState.clearSelectedFigures();
         for (DrawableFigure<? extends Figure> figure : canvasState.figures()) {
             if (figure.getFigure().isReachable(start)) {
                 // add to seleceted list from canvasstate
@@ -46,14 +47,12 @@ public class SelectionButton extends ActionButton {
     @Override
     public void onMouseReleased(Point point) {
         end = point;
-
         // Released but no movement
         if (start != null && end != null && start.getX() == end.getX() && start.getY() == end.getY()) {
             canvasState.clearSelectedFigures();
             return;
         }
 
-        canvasState.clearSelectedFigures();
 
         selectionArea = new Rectangle(start, end);
 

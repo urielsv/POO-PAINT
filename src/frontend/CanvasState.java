@@ -6,6 +6,7 @@ import backend.model.Figure;
 import backend.model.Point;
 import frontend.ui.SelectedSet;
 import frontend.ui.figures.DrawableFigure;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ public class CanvasState {
 
 
     // TODO remove selected
-    private DrawableFigure<? extends Figure> selected;
+
 
     private final List<DrawableFigure<? extends Figure>> list = new ArrayList<>();
 
@@ -30,9 +31,6 @@ public class CanvasState {
         return new ArrayList<>(list);
     }
 
-    public void setSelectedFigure(DrawableFigure selectedFigure) {
-        this.selected = selectedFigure;
-    }
 
     public void deleteFigure() {
         for (DrawableFigure<?extends Figure> figure : figures()){
@@ -47,6 +45,15 @@ public class CanvasState {
         selectedList.add(figure);
     }
 
+    public void updateSelectedFigures(Color color) {
+        for (DrawableFigure<?extends Figure> figure : figures()){
+            if (selectedList.contains(figure)) {
+                figure.changeColor(color);
+            }
+        }
+    }
+
+
     public void clearSelectedFigures() {
         selectedList.clear();
     }
@@ -58,6 +65,8 @@ public class CanvasState {
             else
                 return figure.getFigure().isReachable(eventPoint);
     }
+
+
 
     public boolean noSelection() {
         return selectedList.isEmpty();

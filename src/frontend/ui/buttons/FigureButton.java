@@ -24,6 +24,7 @@ public class FigureButton<F extends Figure> extends ActionButton {
     @Override
     public void onMousePressed(Point start){
         this.start = start;
+        canvasState.clearSelectedFigures();
     }
 
     @Override

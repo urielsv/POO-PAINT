@@ -2,6 +2,7 @@ package frontend.ui;
 
 import backend.model.Figure;
 import frontend.ui.figures.DrawableFigure;
+import javafx.scene.paint.Color;
 
 import java.util.HashSet;
 
@@ -24,6 +25,11 @@ public class SelectedSet<T extends DrawableFigure<? extends Figure>> extends Has
             super.clear();
         }
 
+        public void update(Color color) {
+            for (DrawableFigure<? extends Figure> figure : this) {
+                figure.changeColor(color);
+            }
+        }
 
 
 }

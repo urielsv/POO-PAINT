@@ -14,10 +14,11 @@ public abstract class DrawableFigure<F extends Figure> {
     private static final Color SELECTED_COLOR = Color.RED;
     private static final Color LINE_COLOR = Color.BLACK;
 
-    private Color figureColor = Color.YELLOW;
+    private Color figureColor;
 
-    public DrawableFigure(F figure) {
+    public DrawableFigure(F figure, Color figureColor) {
         this.figure = figure;
+        this.figureColor = figureColor;
     }
 
     public F getFigure() {

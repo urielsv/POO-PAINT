@@ -2,11 +2,12 @@ package frontend.ui.figures;
 
 import backend.model.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class DrawableRectangle<R extends Rectangle> extends DrawableFigure<R> {
 
-        public DrawableRectangle(R figure) {
-            super(figure);
+        public DrawableRectangle(R figure, Color color) {
+            super(figure, color);
         }
 
         @Override
