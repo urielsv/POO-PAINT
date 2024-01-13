@@ -50,5 +50,9 @@ public class CanvasState {
                 return figure.getFigure().isReachable(eventPoint);
     }
 
+    public boolean noSelection() {
+        return selectedList.isEmpty();
+    }
+
 
 }

@@ -2,6 +2,8 @@ package frontend.ui.bars;
 
 import backend.model.*;
 import frontend.CanvasState;
+import frontend.ui.buttons.ActionButton;
+import frontend.ui.buttons.DeleteButton;
 import frontend.ui.buttons.FigureButton;
 import frontend.ui.buttons.SelectionButton;
 import frontend.ui.figures.DrawableEllipse;
@@ -48,7 +50,7 @@ public class SideBar extends VBox {
                 (start, end) -> new DrawableRectangle<>(new Square(start, end.getX() - start.getX())));
 
 
-        ToggleButton[] toolsArr = {selectionButton, circleButton, rectangleButton, ellipseButton, squareButton};
+        ToggleButton[] toolsArr = {selectionButton, circleButton, rectangleButton, ellipseButton, squareButton, deleteButton};
 
         for (ToggleButton tool : toolsArr) {
             tool.setMinWidth(90);
@@ -72,4 +74,9 @@ public class SideBar extends VBox {
     public ToggleGroup getTools() {
         return tools;
     }
+
+    public ToggleButton getDeleteButton() {
+        return deleteButton;
+    }
+
 }

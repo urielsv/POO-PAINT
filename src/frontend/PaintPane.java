@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -31,16 +32,7 @@ public class PaintPane extends BorderPane {
     // Canvas y relacionados
     private final Canvas canvas = new Canvas(800, 600);
     private final GraphicsContext gc = canvas.getGraphicsContext2D();
-    private final Color lineColor = Color.BLACK;
-    private final Color defaultFillColor = Color.YELLOW;
 
-    // Botones Barra Izquierda
-    private final ToggleButton selectionButton = new ToggleButton("Seleccionar");
-    //	private final ToggleButton rectangleButton = new ToggleButton("Rectángulo");
-//	private final ToggleButton circleButton = new ToggleButton("Círculo");
-//	private final ToggleButton squareButton = new ToggleButton("Cuadrado");
-//	private final ToggleButton ellipseButton = new ToggleButton("Elipse");
-    private final ToggleButton deleteButton = new ToggleButton("Borrar");
 
     // Selector de color de relleno
     private final ColorPicker fillColorPicker = new ColorPicker(defaultFillColor);
@@ -162,14 +154,19 @@ public class PaintPane extends BorderPane {
 
             redrawCanvas();
         });
-//
-//		deleteButton.setOnAction(event -> {
-//			if (selectedFigure != null) {
-//				canvasState.deleteFigure(selectedFigure);
-//				selectedFigure = null;
-//				redrawCanvas();
-//			}
-//		});
+
+
+        sideBar.getDeleteButton().setOnAction(event -> {
+
+            if(canvasState.noSelection()) {
+                alertInfo("No hay figuras seleccionadas");
+                return;
+            }
+
+                canvasState.deleteFigure();
+                redrawCanvas();
+        });
+
 
         setLeft(sideBar);
         setRight(canvas);
@@ -185,4 +182,14 @@ public class PaintPane extends BorderPane {
         }
     }
 
+    private void alertInfo(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alerta");
+        alert.setHeaderText(message);
+        alert.setContentText("TPE Final POO Diciembre 2023");
+        alert.showAndWait();
+    }
+
+
 }
+
