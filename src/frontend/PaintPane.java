@@ -159,6 +159,11 @@ public class PaintPane extends BorderPane {
             redrawCanvas();
         });
 
+        sideBar.getShadowButton().setOnAction(event -> {
+            canvasState.updateShadow(sideBar.getShadowButton().getValue().toString());
+            redrawCanvas();
+        });
+
 
         setLeft(sideBar);
         setRight(canvas);

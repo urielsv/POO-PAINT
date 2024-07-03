@@ -4,8 +4,6 @@ import backend.model.Figure;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-import java.util.function.Predicate;
-
 public abstract class DrawableFigure<F extends Figure> {
 
     private final F figure;
@@ -15,10 +13,12 @@ public abstract class DrawableFigure<F extends Figure> {
     private static final Color LINE_COLOR = Color.BLACK;
 
     private Color figureColor;
+    private String shadow;
 
-    public DrawableFigure(F figure, Color figureColor) {
+    public DrawableFigure(F figure, Color figureColor, String shadow) {
         this.figure = figure;
         this.figureColor = figureColor;
+        this.shadow = shadow;
     }
 
     public F getFigure() {
@@ -33,7 +33,15 @@ public abstract class DrawableFigure<F extends Figure> {
          this.figureColor = color;
     }
 
+    public void updateShadow(String shadow){ this.shadow = shadow; }
+
+    public String getShadow(){
+        return shadow;
+    }
+
+
     public void handleSelection(GraphicsContext gc) {
+
         // Handle figure selection
         gc.setFill(figureColor);
         gc.setStroke(selected ? SELECTED_COLOR : LINE_COLOR);
@@ -41,4 +49,5 @@ public abstract class DrawableFigure<F extends Figure> {
     }
 
     public abstract void draw(GraphicsContext gc);
+
 }
