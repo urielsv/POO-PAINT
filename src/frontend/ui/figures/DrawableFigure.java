@@ -25,6 +25,11 @@ public abstract class DrawableFigure<F extends Figure> {
         return figure;
     }
 
+    public Color getColor() {
+        return figureColor;
+    }
+
+
     public void setSelected(boolean selected) {
         this.selected = selected;
     }

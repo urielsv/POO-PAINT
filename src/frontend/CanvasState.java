@@ -73,4 +73,12 @@ public class CanvasState {
     }
 
 
+    public void updateShadow(String shadow) {
+        for (DrawableFigure<?extends Figure> figure : figures()) {
+            if (selectedList.contains(figure)) {
+                figure.updateShadow(shadow);
+            }
+        }
+    }
+
 }
